@@ -1,6 +1,6 @@
 /***************récuperation de données***********/
 
-const reponseworks = await fetch ( 'http://localhost:5678/api/works')
+const reponseworks = await fetch ('http://localhost:5678/api/works')
 let works = await reponseworks.json()
 
 /***********************Gallery**********************/
@@ -26,69 +26,45 @@ affichageworks(works)
 
 /*******************Filtres************************/
 
-const filtresPhoto = document.querySelector(".filter-bar")
+const filtresPhoto = document.querySelector(".filter-bar");
 
-const boutonFiltresTous = document.createElement("button")
-boutonFiltresTous.classList.add("filtres_Tous", "button_inactive")
-boutonFiltresTous.innerText = "Tous"
+const categories = [
+    { name: "Tous", id: null },
+    { name: "Objets", id: 1 },
+    { name: "Appartements", id: 2 },
+    { name: "Hotel & restaurants", id: 3 }
+];
 
-const boutonFiltresObjets = document.createElement("button")
-boutonFiltresObjets.classList.add("filtres_Objets", "button_inactive")
-boutonFiltresObjets.innerText = "Objets"
+categories.forEach(category => {
+    const button = document.createElement("button");
+    button.innerText = category.name;
+    button.classList.add("button_inactive");
+    if (category.id !== null) {
+        button.dataset.categoryId = category.id;
+    }
+    filtresPhoto.appendChild(button);
+});
 
-const boutonFiltresAppartements = document.createElement("button")
-boutonFiltresAppartements.classList.add("filtres_Appartements", "button_inactive")
-boutonFiltresAppartements.innerText = "Appartements"
+filtresPhoto.addEventListener("click", function(event) {
+    if (event.target.tagName === "BUTTON") {
+        document.querySelectorAll(".filter-bar button").forEach(button => {
+            button.classList.remove("button_active");
+            button.classList.add("button_inactive");
+        });
+        event.target.classList.add("button_active");
+        event.target.classList.remove("button_inactive");
 
-const boutonFiltresHoteletrestaurants = document.createElement("button")
-boutonFiltresHoteletrestaurants.classList.add("filtres_Hoteletrestaurants", "button_inactive")
-boutonFiltresHoteletrestaurants.innerText = "Hotel & restaurants"
+        const categoryId = event.target.dataset.categoryId ? parseInt(event.target.dataset.categoryId) : null;
+        document.querySelector(".gallery").innerHTML = "";
 
-filtresPhoto.appendChild(boutonFiltresTous);
-filtresPhoto.appendChild(boutonFiltresObjets);
-filtresPhoto.appendChild(boutonFiltresAppartements);
-filtresPhoto.appendChild(boutonFiltresHoteletrestaurants);
+        if (categoryId !== null) {
+            affichageworks(works.filter(work => work.categoryId === categoryId));
+        } else {
+            affichageworks(works);
+        }
+    }
+});
 
-/*Fonctionnalite des boutons filtres */
-
-boutonFiltresTous.addEventListener("click", function(){
-    boutonFiltresTous.classList.add("button_active")
-    boutonFiltresAppartements.classList.remove("button_active")
-    boutonFiltresObjets.classList.remove("button_active")
-    boutonFiltresHoteletrestaurants.classList.remove("button_active")
-    document.querySelector(".gallery").innerHTML=""
-    affichageworks(works)
-
-})
-
-boutonFiltresObjets.addEventListener("click", function(){
-    boutonFiltresTous.classList.remove("button_active")
-    boutonFiltresAppartements.classList.remove("button_active")
-    boutonFiltresObjets.classList.add("button_active")
-    boutonFiltresHoteletrestaurants.classList.remove("button_active")
-    document.querySelector(".gallery").innerHTML=""
-    affichageworks(works.filter(work => work.categoryId === 1))
-})
-
-boutonFiltresAppartements.addEventListener("click", function(){
-    boutonFiltresTous.classList.remove("button_active")
-    boutonFiltresAppartements.classList.add("button_active")
-    boutonFiltresObjets.classList.remove("button_active")
-    boutonFiltresHoteletrestaurants.classList.remove("button_active")
-    document.querySelector(".gallery").innerHTML=""
-    affichageworks(works.filter(work => work.categoryId === 2))
-})
-
-boutonFiltresHoteletrestaurants.addEventListener("click", function(){
-    boutonFiltresTous.classList.remove("button_active")
-    boutonFiltresAppartements.classList.remove("button_active")
-    boutonFiltresObjets.classList.remove("button_active")
-    boutonFiltresHoteletrestaurants.classList.add("button_active")
-    document.querySelector(".gallery").innerHTML=""
-    affichageworks(works.filter(work => work.categoryId === 3))
-})
-
-
-document.querySelector(".gallery").innerHTML = ""
-affichageworks(works) 
+document.querySelector(".gallery").innerHTML = "";
+affichageworks(works);
 

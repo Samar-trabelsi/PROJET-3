@@ -30,6 +30,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background-color: rgba(255, 254, 248, 1);
+
 }
 ol, ul {
 	list-style: none;
@@ -84,6 +86,8 @@ h2{
 	font-size: 30px;
 	color: #1D6154
 }
+/*********************nav*************/
+
 nav ul {
 	display: flex;
 	align-items: center;
@@ -98,6 +102,10 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+.login-button{
+    font-weight: bold;
+}
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -126,11 +134,13 @@ li:hover {
 	margin-bottom: 1em;
 }
 
+/***********************filtres************/
+
 .filter-bar {
-	display: flex;
+    display: flex;
     justify-content: center;
-	padding : 10px 20px;
-	margin-bottom: 35px;
+    padding: 10px 20px;
+    margin-bottom: 35px;
 }
 
 .button_inactive {
@@ -139,15 +149,26 @@ li:hover {
     border: 1px solid #1D6154;
     border-radius: 25px;
     cursor: pointer;
-    color: #1D6154; 
+    color: #1D6154;
     background-color: white;
     font-size: 15px;
     font-family: 'Syne';
 }
+
 .button_active {
+	margin: 5px;
+    padding: 10px 30px;
     background-color: #1D6154;
     color: white;
+	border-radius: 25px;
+	font-size: 15px;
+    font-family: 'Syne';
+    border: #1D6154;
 }
+
+
+
+/*********************Gallery***********/
 
 .gallery {
 	width: 100%;
@@ -158,20 +179,24 @@ li:hover {
 }
 
 .gallery img {
-	width: 100%;
-
+    width: 100%;
 }
+
+/******************Contact**************/
+
 #contact {
 	width: 50%;
-margin: auto;
+    margin: auto;
 }
+
 #contact > * {
 	text-align: center;
-
 }
+
 #contact h2{
 	margin-bottom: 20px;
 }
+
 #contact form {
 	text-align: left;
 	margin-top:30px;
@@ -185,9 +210,11 @@ margin: auto;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+
 #contact label {
 	margin: 2em 0 1em 0;
 }
+
 #contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
@@ -198,15 +225,198 @@ input[type="submit"]{
 	font-weight: 700;
 	color: white;
 	background-color: #1D6154;
-	margin : 2em auto ;
+	margin : 0.5em auto ;
 	width: 180px;
 	text-align: center;
 	border-radius: 60px ;
 }
 
+/*********** Footer ***********/
+
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em
+}
+
+#container{
+    width:400px;
+    margin:0 auto;
+    margin-top:10%;
+}
+
+
+#container h1{
+    width: 38%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+
+/************** Login********************/
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin-bottom: 35px;
+	margin-top: 8px;
+    display: inline-block;
+    box-sizing: border-box;
+	height: 50px;
+    font-size: 1.2em;
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+input[type=submit] {
+    background-color:#1D6154 ;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+	display: flex;
+    justify-content: center;
+}
+
+#error-message{
+	color: red;
+    display: block;
+}
+
+nav ul li a {
+    text-decoration: none;
+	color: inherit;
+}
+
+nav ul li a:active {
+    font-weight: bold;
+}
+
+
+nav li img {
+	width: 50%;
+}
+
+#login {
+    width: 50%;
+    margin: 100px auto;
+    text-align: center;
+}
+
+#login h2 {
+    font-family: 'Syne';
+    font-weight: 700;
+    font-size: 30px;
+    color: #1D6154;
+    margin-bottom: 20px;
+}
+
+#login form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	text-align: left; 
+}
+
+#login label {
+    margin: 2em 0 0.5em 0;
+	display: flex;
+	width: 70%
+}
+
+#login input[type="email"]{
+	width: 67%;
+    height: 50px;
+    font-size: 1.2em;
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    padding: 0 10px;
+
+}
+#login input[type="password"] {
+    width: 70%;
+    height: 50px;
+    font-size: 1.2em;
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    padding: 0 10px;
+}
+
+#login input[type="submit"] {
+    font-family: 'Syne';
+    font-weight: 700;
+    color: white;
+    background-color: #1D6154;
+    margin: 2em auto;
+    width: 180px;
+    text-align: center;
+    border-radius: 50px;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+}
+
+#login button {
+    background: none;
+    border: none;
+    color:black;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+#login button:hover {
+    text-decoration: underline;
+}
+
+
+
+footer nav ul {
+    display: flex;
+    justify-content: flex-end;
+    margin: 2em;
+}
+
+#edit-mode-bar {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    font-size: 1em;
+}
+
+#edit-mode-bar.hidden {
+    display: none;
+}
+#edit-mode-bar i {
+    color: white; 
+	padding-right: 5px;
+}
+#edit-mode-bar p {
+    font-size: 14px;
+    display: inline;
+    margin-left: 5px;
+    font-weight: normal;
+}
+.edit-button {
+	background-color: white;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 10px;
+}
+
+.edit-button i {
+    margin-right: 5px;
 }
 
