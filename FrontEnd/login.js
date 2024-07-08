@@ -1,5 +1,3 @@
-
-
 document.getElementById('login-form').addEventListener('submit', async function(event) {
     event.preventDefault(); 
 
@@ -30,3 +28,4 @@ document.getElementById('login-form').addEventListener('submit', async function(
     }
 });
 
+Login()
