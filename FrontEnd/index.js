@@ -257,5 +257,40 @@ document.addEventListener("DOMContentLoaded", async function() {
         }
     });
 
-    
+    /********** Gestion de l'ajout de photo **********/
+    const formSendImg = document.getElementById("Form-send-img");
+    formSendImg.addEventListener("submit", async function(event){
+        event.preventDefault();
+        const formData = new FormData(formSendImg);
+        const authToken = window.localStorage.getItem('authToken');
+
+        try {
+            const response = await fetch('http://localhost:5678/api/works', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${authToken}`
+                },
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error(`Erreur HTTP: ${response.status}`);
+            }
+
+            const result = await response.json();
+            works.push(result);
+            affichageworks(works, ".gallery");
+            affichageworks(works, ".gallery-modal");
+            modal.style.display = "none";
+            formSendImg.reset();
+            imagePreview.style.display = "none";
+            imageLabel.style.display = "flex";
+
+            alert("L'ajout du projet est réussi");
+        } catch (error) {
+            console.error('Erreur lors de l\'ajout de la photo:', error);
+            alert('Erreur lors de l\'ajout de la photo');
+        }
+    });
+
 });
