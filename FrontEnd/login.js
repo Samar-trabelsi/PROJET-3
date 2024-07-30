@@ -1,31 +1,49 @@
-document.getElementById('login-form').addEventListener('submit', async function(event) {
-    event.preventDefault(); 
+const boutonConnection = document.getElementById("login_Button")
+const ZoneMail = document.getElementById("email")
+const ZonePassword = document.getElementById("password")
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const errorMessage = document.getElementById('error-message');
+const ZoneErreur= document.querySelector(".login_error")
+const ErreurLogin = document.createElement("p")
 
-    try {
-        const response = await fetch('http://localhost:5678/api/users/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, password })
-        });
+function Redirection(){
+    document.location.href="index.html"
+}
 
-        if (response.ok) {
-            const data = await response.json();
-            const token = data.token;
-            localStorage.setItem('authToken', token);
-            window.location.href = 'index.html';
-        } else {
-            errorMessage.textContent = 'Email ou mot de passe incorrect';
+
+function Login(){
+    boutonConnection.addEventListener("click", async function(event){
+        event.preventDefault()
+        const InfosLogin = {
+            email : ZoneMail.value,
+            password : ZonePassword.value
         }
-    } catch (error) {
-        console.error('Erreur:', error);
-        errorMessage.textContent = 'Une erreur est survenue. Veuillez réessayer plus tard.';
-    }
-});
+
+        const chargeUtile = JSON.stringify(InfosLogin)
+        
+        await fetch("http://localhost:5678/api/users/login",{
+            method:"POST",
+            headers: {"Content-Type":"application/json"},
+            body:chargeUtile
+        }).then (function(response){
+            if(response.status===200){
+                ErreurLogin.innerText=""
+                
+                return response.json()
+                
+                .then(function(reponseConvertie){
+                    window.localStorage.setItem("tokenSophieBluel01", reponseConvertie.token);
+                    Redirection();
+                })
+                
+            }else{
+                
+                ErreurLogin.innerText="Erreur dans l'identifiant ou le mot de passe"
+                ErreurLogin.classList.add("Message-Login_incorrect")
+                ZoneErreur.appendChild(ErreurLogin)
+            }
+        })
+        console.log (boutonConnection)
+    })
+}
 
 Login()

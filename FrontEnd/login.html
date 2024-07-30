@@ -9,33 +9,46 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script src="login.js" defer></script>
+    <script defer src="login.js"></script>
+	
 </head>
 <body>
-    <header>
-        <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-        <nav>
-            <ul>
-                <li>projets</li>
-                <li>contact</li>
-                <li class="login-button">login</li>
-                <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="main-container_login">
+        <header>
+            <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+            <nav>
+                <ul>
+                    <li>projets</li>
+                    <li>contact</li>
+                    <li id="login_in-use"><a href="login.html">login</a></li>
+                    <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section class="log_section">
+                <h2>Log In</h2>
+                <div class="login_form">
+                    <form>
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email"  required>
+                        <label for="password">Mot de passe</label>
+                        <input type="password" id="password" name="password" required>
+                        <input type="button" value="Se connecter" class="button_active" id="login_Button">
+                    </form>
+                </div>
+                
+                <p class="forgotten_password">Mot de passe oublié</p>
+                <div class="login_error">
+                    
+                </div>
+            </section>
+            
+    
+    
+        </main>
 
-    <main id="login">
-        <h2>Log In</h2>
-        <form id="login-form" action="#" method="post">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email">
-            <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password">
-            <div id="error-message"></div>
-            <input type="submit" value="Se connecter">
-            <button type="button">Mot de passe oublié</button>
-        </form>
-    </main>
+    </div>
 
     <footer>
         <nav>
@@ -44,5 +57,5 @@
             </ul>
         </nav>
     </footer>
-    </body>
-    </html>
+</body>
+</html>
